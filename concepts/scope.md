@@ -15,10 +15,10 @@ The following pseudo code should show how the main script could potentially look
 ```
 include VisualPDE-Research
 
-params = load_parameters("model.json")
+params = load_parameters("problem.json")
 
-model = VisualPDEModel(params, t_end = 10)
-ode = discretisation(model, params) 
+prob = VisualPDEProblem(params, t_end = 10)
+ode = discretisation(prob, params) 
 solver = ODESolver(params)
 
 sol = solve(ode, solver)
@@ -27,13 +27,21 @@ sol = solve(ode, solver)
 Alternatively, the user could use the more verbose form in which the parameters from the json file are only used to define the model:
 
 ```
-params = load_parameters("model.json")
+params = load_parameters("problem.json")
 
-model = VisualPDEModel(params, t_end = 10)
-ode = discretisation(model, grid = [100, 100])
+prob = VisualPDEProblem(params, t_end = 10)
+ode = discretisation(prob, grid = [100, 100])
 solver = ImplicitEuler(dt = 0.1)
 
 sol = solve(ode, solver)
+
+# visualisation
+plot(sol[end])          # terminal state
+create_video(sol)
+
+# convergence study
+res = convergence_test(ode, solver, 10, dt_step = 0.5, grid_step = 1)
+plot(res)               # convergence plot
 ```
 Notice that one can either provide the params object (which contains info about the model and the numerical method), or one can provide the missing numerical data manually.
 
