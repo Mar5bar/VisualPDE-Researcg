@@ -17,7 +17,7 @@ include VisualPDE-Research
 
 params = load_parameters("problem.json")
 
-prob = VisualPDEProblem(params, t_end = 10)
+prob = VisualPDEProblem(params)
 ode = discretisation(prob, params) 
 solver = ODESolver(params)
 
