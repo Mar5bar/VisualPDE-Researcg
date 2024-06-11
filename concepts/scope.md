@@ -15,7 +15,9 @@ The following pseudo code should show how the main script could potentially look
 ```
 include VisualPDE-Research
 
-model = VisualPDEModel("model.json", t_end = 10)
+params = load_parameters("model.json")
+
+model = VisualPDEModel(params, t_end = 10)
 ode = discretisation(model, params) 
 solver = ODESolver(params)
 
@@ -33,6 +35,7 @@ solver = ImplicitEuler(dt = 0.1)
 
 sol = solve(ode, solver)
 ```
+Notice that one can either provide the params object (which contains info about the model and the numerical method), or one can provide the missing numerical data manually.
 
 
 The following types are involved
