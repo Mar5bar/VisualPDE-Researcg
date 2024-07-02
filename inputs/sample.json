@@ -1,0 +1,28 @@
+{
+  "boundaryConditions": [
+    "periodic",
+    "Left: Dirichlet = 0; Right: Dirichlet = 1",
+    "Dirichlet = 0",
+    "periodic"
+  ],
+  "diffusion": [
+    ["0.04", 0, 0, 0],
+    [0, "0.02", 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0]
+  ],
+  "dimension": "2",
+  "domain": {
+    "x": ["0", "100"],
+    "y": ["0", "100"],
+    "discretisation": ["200", "200"]
+  },
+  "initialConditions": ["1.0", "0", "0", "0"],
+  "parameters": { "a": "0.037", "b": "0.05" },
+  "numSpecies": 2,
+  "reactions": ["-u*v^2 + a*(1.0 - u)", "u*v^2 - (a+b)*v", "0", "0"],
+  "speciesNames": ["u", "v", "w", "q"],
+  "timescales": ["1", "1", "1", "1"],
+  "timespan": ["0", "1000"],
+  "whatToPlot": "v"
+}
